@@ -1,0 +1,280 @@
+@import "./variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import "./components.scss";
+
+body {
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: $text;
+  font-size: 14px;
+  background: center/ cover no-repeat url(../img/background.png), $background;
+}
+
+h1 {
+  color: $text;
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 80px;
+  letter-spacing: 2%;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.container {
+  padding: 0 20px;
+}
+section {
+  padding: 30px 0;
+}
+.header {
+  background-color: rgba($color: #121829, $alpha: 0.8);
+  padding: 20px 0;
+  &__content {
+    display: none;
+  }
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__menu-mob {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+
+    &-item {
+      border-radius: 10px;
+      display: block;
+      height: 3px;
+      background-color: $primary;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    font-size: 16px;
+  }
+  .container {
+    padding: 0 45px;
+  }
+
+  .header {
+    &__inner {
+      justify-content: start;
+    }
+    &__content {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      flex-grow: 1;
+      justify-content: end;
+    }
+    &__menu-mob {
+      display: none;
+    }
+  }
+
+  .header__menu-list {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: $text;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+  }
+
+  .menu-item {
+    &:hover a {
+      color: $secondary;
+    }
+  }
+  .menu-item + .menu-item {
+    margin-left: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 64px;
+  }
+  section {
+    padding: 40px 0;
+  }
+  .container {
+    padding: 0;
+    max-width: 870px;
+    margin: 0 auto;
+    font-size: 16px;
+  }
+
+  .menu-item + .menu-item {
+    margin-left: 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1150px;
+  }
+
+  .menu-item + .menu-item {
+    margin-left: 60px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1480px;
+  }
+}
+
+// ============= banner text
+.banner {
+  padding-top: 50px;
+  color: $gray;
+  &__content {
+    max-width: 540px;
+  }
+}
+@media (min-width: 1024px) {
+  .banner {
+    padding-top: 100px;
+  }
+}
+// ================ controls
+
+.controls {
+  &__search {
+    margin-bottom: 50px;
+  }
+  &__filters {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+  }
+  .filter-input {
+    cursor: pointer;
+  }
+  .control-field {
+    flex: 0 1 15%;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .controls {
+    &__filters {
+      flex-direction: row;
+    }
+    .control-field {
+      min-width: 180px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+// ===== movies block
+.movies {
+  &-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+  }
+
+  &-col {
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  &-item {
+    height: 100%;
+    transition: 0.3s linear;
+    max-width: fit-content;
+    background-color: rgba($color: #20283e, $alpha: 0.8);
+    border-radius: $button-radius;
+    padding: 10px;
+    overflow: hidden;
+
+    &-img {
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    &__content {
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 16px;
+      border-radius: $button-radius;
+    }
+    &__controls {
+      display: flex;
+      z-index: 2;
+      border-radius: $button-radius;
+      color: $warning;
+      position: absolute;
+      top: 10px;
+      background: rgba($color: #000000, $alpha: 0.65);
+      padding: 8px;
+    }
+
+    &__rate {
+      left: 8px;
+
+      .icon-star {
+        margin-right: 5px;
+      }
+    }
+
+    &__favorites {
+      right: 8px;
+      padding: 8px 8px 4px 8px;
+      transition: 0.2s linear;
+      color: $text;
+
+      &:hover {
+        color: $warning;
+      }
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .movies {
+    &-col {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .movies {
+    &-col {
+      width: 33.333%;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .movies {
+    &-col {
+      width: 25%;
+    }
+  }
+}

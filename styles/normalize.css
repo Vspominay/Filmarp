@@ -1,0 +1,95 @@
+/* Указываем box sizing */
+html,
+body {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+a {
+  text-decoration: none;
+}
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+/* input:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+  } */
+
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: black;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: black;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: black;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: black;
+}
+
+textarea {
+  resize: none;
+}
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+  margin-top: 1em;
+}
+a {
+  color: #000;
+}
+
+button {
+  border: 0;
+}
+input:focus {
+  outline: none;
+}
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}

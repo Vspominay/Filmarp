@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filmarp|Favorites</title>
+
+    <link rel="shortcut icon" href="../img/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/icon-fonts.css" />
+
+    <script defer type="module"  src="../scripts/modules/scriptFavorites.js"></script>
+  </head>
+  <body id="body">
+    <div class="wrapper">
+      <header class="header">
+        <div class="container">
+          <div class="header__inner">
+            <div class="header__logo">
+              <img src="../img/icon.png" alt="logo" width="50" height="50" />
+            </div>
+
+            <div class="header__content">
+              <nav class="header__menu">
+                <ul class="header__menu-list">
+                  <li class="menu-item"><a href="../index.html">Films</a></li>
+                  <li class="menu-item"><a href="#">Favorites</a></li>
+                  <li class="menu-item">
+                    <a href="#"
+                      >Contacts </span
+                    ></a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div class="header__menu-mob">
+              <span class="header__menu-mob-item"></span>
+              <span class="header__menu-mob-item"></span>
+              <span class="header__menu-mob-item"></span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+          <section class="banner">
+            <div class="container">
+                <div class="banner__content">
+                <h1>Favorites</h1>
+                <p>This page contains all the movies that have been added to the Favorites tab by you.</p>
+            </div>
+            </div>
+          </section>
+
+          <section class="controls">
+              <div class="container">
+                  <div class="contols__content">
+                      <div  class="controls__search input-field">
+                          <input type="text" id="searchField" placeholder="Search Movies or TV Shows"
+                          >
+                          <div class="icon-search"></div>
+                      </div>
+
+                      <div class="controls__filters">
+                          <div class="input-field control-field">
+                            <div class="input-name">Genres</div>
+                            <input id="filterGenre" type="text" class="filter-input" readonly value="All">
+                            <div class="icon-next-arrow"></div>
+
+                            <div class="icon-filter"></div>
+                          </div>
+
+                          <ul id="genresList" class="contols__list">
+                            <li class="contols__list-item activeFilter">All</li>
+                          </ul>
+                      </div>
+
+                      <div class="controls__filters">
+                        <div class="input-field control-field">
+                          <div class="input-name">Languages</div>
+                          <input id="filterLanguges" type="text" class="filter-input" readonly value="All">
+                          <div class="icon-next-arrow"></div>
+
+                          <div class="icon-filter"></div>
+                        </div>
+
+                        <ul id="languagesList" class="contols__list">
+                            <li class="contols__list-item activeFilter">All</li>
+                        </ul>
+                    </div>
+                  </div>
+              </div>
+          </section>
+
+
+          <section class="movies">
+              <div class="container">
+                  <div class="movies__inner">
+                      <div class="movies-row">
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img  src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                        <div class="movies-col">
+                            <div class="movies-item preloader">
+                                <img src="../img/prloaderImg.png" alt="preloader">
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </main>
+      <footer class="footer"></footer>
+      <div class="popup" id="popup">
+       
+    </div>
+    </div>
+  </body>
+</html>
