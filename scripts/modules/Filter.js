@@ -46,11 +46,17 @@ export default class Filter {
         this.filterGenres.addEventListener('blur', () => {
             setTimeout(() => {
                 this.genresList.classList.remove('showList');
-                if (this.inputId === 'filterLanguges') {
-                    new ListContol(null, null, this._filterValue, null, null);
-                }
-                else if (this.inputId === 'filterGenre') {
-                    new ListContol(null, this._filterValue, null, null, null);
+                switch (this.inputId) {
+                    case 'filterLanguges':
+                        new ListContol(null, null, this._filterValue, null, null);
+
+                        break;
+                    case 'filterGenre':
+                        new ListContol(null, this._filterValue, null, null, null);
+
+                        break;
+                    default:
+                        break;
                 }
             }, 100);
         });

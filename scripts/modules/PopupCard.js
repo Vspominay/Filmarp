@@ -4,10 +4,6 @@ export default class PopupCard extends Card {
 
     static _body = document.getElementById('body');
 
-    get popupCard() {
-        return this._popup;
-    }
-
     constructor(id, rate, img, name, genres, languages, type, startPremier, endPremier, description, url) {
         super(id, rate, img, name, genres, languages);
         this.type = type;
@@ -15,6 +11,10 @@ export default class PopupCard extends Card {
         this.endPremier = endPremier;
         this.description = description;
         this.url = url;
+    }
+
+    get popupCard() {
+        return this._popup;
     }
 
     generatePopup() {

@@ -185,6 +185,21 @@ section {
 
 // ===== movies block
 .movies {
+  &-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    h1 {
+      font-size: 32px;
+    }
+  }
+  .show {
+    display: flex;
+  }
+  .hide {
+    display: none;
+  }
   &-row {
     display: flex;
     flex-wrap: wrap;

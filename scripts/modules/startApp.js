@@ -23,10 +23,8 @@ function activeApp(moviesArray) {
 
         moviesList.innerHTML = cardList.renderMoviesList();
 
-        function filterbyGenre() {
-            const filteredListMovie = new ListContol(moviesArray, filterGenres.filterValue, filterLanguages.filterValue, null, moviesList);
-        }
-        filterbyGenre();
+        new ListContol(moviesArray, filterGenres.filterValue, filterLanguages.filterValue, null, moviesList);
+
         activateSearch();
     }
 
@@ -75,10 +73,6 @@ function activeApp(moviesArray) {
         })
     }
 
-    fillingFilters(cardList);
-    addToFavorites();
-    pagination(cardList);
-
     function showPopup(movie) {
         let popup = new PopupCard(movie.id, movie.rating.average ?? '..', movie.image.medium, movie.name, movie.genres.join(' & '), movie.language, movie.type, movie.premiered, movie.ended ??= '-', movie.summary, movie.url);
 
@@ -95,6 +89,9 @@ function activeApp(moviesArray) {
         })
     }
 
+    fillingFilters(cardList);
+    addToFavorites();
+    pagination(cardList);
 }
 
 export const startApp = activeApp;

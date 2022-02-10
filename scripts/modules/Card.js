@@ -13,10 +13,8 @@ export default class Card {
 
     generateCard() {
         let name = this.cropName();
-        let isInFavoritesList = false;
-        if (Card._localStorage.split(';').includes(this.id + '')) {
-            isInFavoritesList = true;
-        }
+        let isInFavoritesList = Card._localStorage.split(';').includes(this.id + '') ? true : false;
+
         return `
         <div class="movies-col" id=${this.id}>
             <div class="movies-item">

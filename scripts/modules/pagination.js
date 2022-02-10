@@ -75,8 +75,6 @@ function updatePagesLimit(nextArrow, prevArrow, currentPage, allPage) {
 }
 
 function calculateAllPage(cardsPerPage, allMovies) {
-    console.log(cardsPerPage);
-    console.log(allMovies);
     return Math.ceil(allMovies / cardsPerPage);
 }
 

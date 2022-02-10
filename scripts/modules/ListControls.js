@@ -3,20 +3,19 @@ import { pagination } from "./pagination.js"
 
 export class ListContol {
 
-    static instance;
+    static _depot;
     static _moviesListFromDom;
 
     constructor(movies, genresFilterValue, languageFilterValue, searchValue, moviesListFromDom) {
-        if (ListContol.instance) {
-            debugger;
-            ListContol.instance.searchValue = searchValue;
+        if (ListContol._depot) {
+            ListContol._depot.searchValue = searchValue;
 
-            if (!ListContol.instance._searchValue) {
-                ListContol.instance.genresFilterValue = genresFilterValue || ListContol.instance._genresFilterValue;
-                ListContol.instance.languageFilterValue = languageFilterValue || ListContol.instance._languagesFilterValue;
+            if (!ListContol._depot._searchValue) {
+                ListContol._depot.genresFilterValue = genresFilterValue || ListContol._depot._genresFilterValue;
+                ListContol._depot.languageFilterValue = languageFilterValue || ListContol._depot._languagesFilterValue;
             }
 
-            return ListContol.instancel
+            return ListContol._depotl
         }
         ListContol._moviesListFromDom = moviesListFromDom;
         this.movies = movies;
@@ -24,7 +23,7 @@ export class ListContol {
         this.languageFilterValue = languageFilterValue;
         this.searchValue = searchValue;
 
-        ListContol.instance = this;
+        ListContol._depot = this;
     }
 
     set genresFilterValue(value) {
@@ -46,26 +45,20 @@ export class ListContol {
         let arrForRender = [];
 
         if (this._searchValue) {
-            for (const movie of this.movies ??= ListContol.instance.movies) {
-                // let tempMovie = document.getElementById(movie.id);
+            for (const movie of this.movies ??= ListContol._depot.movies) {
                 if (movie.name.toLowerCase().includes(this._searchValue.toLowerCase())) {
                     arrForRender.push(movie);
                 }
-
             }
-            let renderedList = new CardList(arrForRender);
-            pagination(renderedList);
-            ListContol._moviesListFromDom.innerHTML = renderedList.renderMoviesList();
+
+            this.updateMoviesBlock(ListContol._moviesListFromDom, arrForRender);
         }
         else {
-            for (const movie of this.movies ??= ListContol.instance.movies) {
-
+            for (const movie of this.movies ??= ListContol._depot.movies) {
                 arrForRender.push(movie);
             }
-            let renderedList = new CardList(arrForRender);
-            pagination(renderedList);
 
-            ListContol._moviesListFromDom.innerHTML = renderedList.renderMoviesList();
+            this.updateMoviesBlock(ListContol._moviesListFromDom, arrForRender);
         }
     }
 
@@ -85,27 +78,23 @@ export class ListContol {
             return;
         }
 
-        // console.log(this.movies);
         let arrForRender = [];
-        for (const movie of this.movies ??= ListContol.instance.movies) {
-            // let tempMovie = document.getElementById(movie.id);
+        for (const movie of this.movies ??= ListContol._depot.movies) {
             let firstOption = movie.genres.includes(this._genresFilterValue);
             let secondOption = movie.language === this._languagesFilterValue;
 
             if (((this._languagesFilterValue === 'All' && this._genresFilterValue === 'All')) || (option === 0 && firstOption) || (option === 1 && secondOption) || (option === 2 && firstOption && secondOption)) {
-                // tempMovie.style.display = 'flex';
                 arrForRender.push(movie);
             }
-            // else {
-            //     tempMovie.style.display = 'none';
-            // }
         }
 
+        this.updateMoviesBlock(ListContol._moviesListFromDom, arrForRender);
+    }
+
+
+    updateMoviesBlock(moviesListDom, arrForRender) {
         let renderedList = new CardList(arrForRender);
         pagination(renderedList);
-        // console.log(ListContol._moviesListFromDom);
-        ListContol._moviesListFromDom.innerHTML = renderedList.renderMoviesList();
-        // return new Promise(res => res(arrForRender));
-
+        moviesListDom.innerHTML = renderedList.renderMoviesList();
     }
 }
