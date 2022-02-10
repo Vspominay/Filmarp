@@ -1,4 +1,5 @@
 import CardList from "./CardList.js";
+import { pagination } from "./pagination.js"
 
 export class ListContol {
 
@@ -48,23 +49,22 @@ export class ListContol {
             for (const movie of this.movies ??= ListContol.instance.movies) {
                 // let tempMovie = document.getElementById(movie.id);
                 if (movie.name.toLowerCase().includes(this._searchValue.toLowerCase())) {
-                    // tempMovie.style.display = 'flex';
                     arrForRender.push(movie);
                 }
-                // else {
-                //     tempMovie.style.display = 'none';
-                // }
+
             }
             let renderedList = new CardList(arrForRender);
+            pagination(renderedList);
             ListContol._moviesListFromDom.innerHTML = renderedList.renderMoviesList();
         }
         else {
             for (const movie of this.movies ??= ListContol.instance.movies) {
-                // let tempMovie = document.getElementById(movie.id);
-                // tempMovie.style.display = 'flex';
+
                 arrForRender.push(movie);
             }
             let renderedList = new CardList(arrForRender);
+            pagination(renderedList);
+
             ListContol._moviesListFromDom.innerHTML = renderedList.renderMoviesList();
         }
     }
@@ -102,10 +102,10 @@ export class ListContol {
         }
 
         let renderedList = new CardList(arrForRender);
+        pagination(renderedList);
         // console.log(ListContol._moviesListFromDom);
         ListContol._moviesListFromDom.innerHTML = renderedList.renderMoviesList();
         // return new Promise(res => res(arrForRender));
 
     }
-
 }

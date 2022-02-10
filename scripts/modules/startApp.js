@@ -3,6 +3,9 @@ import Filter from './Filter.js';
 import { ListContol } from './ListControls.js';
 import { getMoviesFromID } from './http.js'
 import PopupCard from './PopupCard.js';
+import { pagination } from './pagination.js';
+import debounce from './debounce.js';
+
 
 function activeApp(moviesArray) {
     const moviesList = document.querySelector('.movies-row');
@@ -74,7 +77,7 @@ function activeApp(moviesArray) {
 
     fillingFilters(cardList);
     addToFavorites();
-    controlPagination(cardList, moviesList);
+    pagination(cardList);
 
     function showPopup(movie) {
         let popup = new PopupCard(movie.id, movie.rating.average ?? '..', movie.image.medium, movie.name, movie.genres.join(' & '), movie.language, movie.type, movie.premiered, movie.ended ??= '-', movie.summary, movie.url);
@@ -92,81 +95,6 @@ function activeApp(moviesArray) {
         })
     }
 
-    function controlPagination(cardList, moviesList) {
-        const countAllMovies = cardList._movies.length;
-        const prevArrow = document.querySelector('.pagination__prev');
-        const nextArrow = document.querySelector('.pagination__next');
-        const currentPage = document.querySelector('.pagination__current');
-        const allPage = document.querySelector('.pagination__all');
-        const cardsPerPage = document.querySelector('.cardsPerPage');
-
-        prevArrow.addEventListener('click', () => {
-            allPage.innerHTML = calculateAllPage(cardsPerPage.value, countAllMovies);
-            moviesList.innerHTML = cardList.renderMoviesList(--currentPage.value, +cardsPerPage.value);
-            checkLimitValues(prevArrow, +currentPage.value, +allPage.textContent, 1);
-            checkLimitValues(nextArrow, +currentPage.value, +allPage.textContent);
-
-        });
-
-        nextArrow.addEventListener('click', () => {
-            allPage.innerHTML = calculateAllPage(cardsPerPage.value, countAllMovies);
-            moviesList.innerHTML = cardList.renderMoviesList(++currentPage.value, +cardsPerPage.value);
-            checkLimitValues(nextArrow, +currentPage.value, +allPage.textContent);
-            checkLimitValues(prevArrow, +currentPage.value, +allPage.textContent, 1);
-
-        });
-
-        const cardsPerPageDebounce = debounce(function validatePage() {
-            if (isFinite(cardsPerPage.value) && isFinite(currentPage.value) && currentPage.value > 0 && currentPage.value <= +allPage.textContent) {
-                checkLimitValues(nextArrow, +currentPage.value, +allPage.textContent);
-                checkLimitValues(prevArrow, +currentPage.value, +allPage.textContent, 1);
-
-                allPage.innerHTML = calculateAllPage(cardsPerPage.value, countAllMovies);
-                moviesList.innerHTML = cardList.renderMoviesList(+currentPage.value, +cardsPerPage.value);
-            }
-            else {
-                if (!isFinite(cardsPerPage.value)) {
-                    cardsPerPage.value = 8;
-                    validatePage();
-                }
-                else {
-                    currentPage.value = 1;
-                    validatePage();
-                }
-
-            }
-        }, 700);
-
-        cardsPerPage.addEventListener('input', cardsPerPageDebounce);
-
-        currentPage.addEventListener('input', cardsPerPageDebounce);
-    }
-
-    function checkLimitValues(pointer, pageValue, allPage, checker = 0) {
-        if ((checker && pageValue === 1) || (!checker && pageValue === allPage)) {
-            pointer.classList.add('blocked');
-        }
-        else {
-            pointer.classList.remove('blocked');
-        }
-    }
-
-    function calculateAllPage(cardsPerPage, allMovies) {
-        return Math.ceil(allMovies / cardsPerPage);
-    }
-
-    function debounce(func, ms) {
-        let timer;
-
-        return function (...args) {
-            const funcCall = () => {
-                func.apply(this, ...args);
-            }
-
-            clearTimeout(timer);
-            timer = setTimeout(funcCall, ms);
-        }
-    }
 }
 
 export const startApp = activeApp;
